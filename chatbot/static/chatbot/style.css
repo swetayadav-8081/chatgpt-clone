@@ -1,0 +1,12 @@
+body { font-family: Arial, sans-serif; margin: 0; }
+nav { background: #333; color: #fff; padding: 10px; }
+nav a { color: #fff; margin-right: 10px; text-decoration: none; }
+.container { display: flex; height: 90vh; }
+.sidebar { width: 20%; background: #f4f4f4; padding: 10px; }
+.chatwindow { flex: 1; display: flex; flex-direction: column; padding: 10px; }
+.messages { flex: 1; overflow-y: auto; margin-bottom: 10px; }
+.msg.user { text-align: right; color: blue; }
+.msg.bot { text-align: left; color: green; }
+form { display: flex; }
+form input { flex: 1; padding: 5px; }
+form button { padding: 5px 10px; }

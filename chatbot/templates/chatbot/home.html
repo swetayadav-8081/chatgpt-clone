@@ -1,0 +1,44 @@
+{% extends "chatbot/base.html" %}
+
+{% block content %}
+<h2>Chat Session</h2>
+
+<!-- New Chat -->
+<form method="get" action="{% url 'home' %}">
+    <button type="submit">New Chat</button>
+</form>
+
+<!-- Previous Chats -->
+<h3>Previous Chats</h3>
+<ul>
+    {% for cid in previous_chats %}
+        <li>
+            <a href="{% url 'home' cid %}">Chat {{ forloop.counter }}</a>
+        </li>
+    {% empty %}
+        <li>No previous chats</li>
+    {% endfor %}
+</ul>
+
+<!-- Chat Messages -->
+<div>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="message" placeholder="Type your message" required>
+        <button type="submit">Send</button>
+    </form>
+</div>
+
+<div>
+    <h3>Messages</h3>
+    {% for msg in messages %}
+        <p><strong>You:</strong> {{ msg.input_text }}</p>
+        <p><strong>Bot:</strong> {{ msg.output_text }}</p>
+        <small>{{ msg.created_at }}</small>
+        <hr>
+    {% empty %}
+        <p>No messages yet.</p>
+    {% endfor %}
+</div>
+
+{% endblock %}

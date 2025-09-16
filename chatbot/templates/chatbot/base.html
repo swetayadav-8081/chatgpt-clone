@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ChatGPT Clone</title>
+  <link rel="stylesheet" href="{% static 'chatbot/styles.css' %}">
+</head>
+<body>
+  <nav>
+    {% if user.is_authenticated %}
+      <span>Hello, {{ user.username }}</span>
+      <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+    
+    {% else %}
+      <a href="{% url 'login' %}">Login</a> |
+      <a href="{% url 'signup' %}">Signup</a>
+    {% endif %}
+  </nav>
+  <hr>
+  {% block content %}{% endblock %}
+</body>
+</html>
